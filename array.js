@@ -48,40 +48,72 @@
 
 // console.log(results)
 
-// //Binary Search is defined as a searching algorithm used in a sorted array by repeatedly dividing the search 
-// //interval in half. The idea of binary search is to use the information that the array is sorted 
-// //and reduce the time complexity to O(log N). 
+//Binary Search is defined as a searching algorithm used in a sorted array by repeatedly dividing the search 
+//interval in half. The idea of binary search is to use the information that the array is sorted 
+//and reduce the time complexity to O(log N). 
 
 
-const binarySearchIterative = (array, target) => {
+// const binarySearchIterative = (array, target) => {
 
-    let low = 0; //setting low 
-    let high = array.length - 1; // settting high 
+//     let low = 0; //setting low 
+//     let high = array.length - 1; // settting high 
 
-    while (low <= high) {
-    const middle = Math.floor((low + high) / 2);// this defines the middle
+//     while (low <= high) {
+//     const middle = Math.floor((low + high) / 2);// this defines the middle
 
-        if (array[middle] === target) {
-        return middle; // Return the index if the target is found
-        } else if (array[middle] < target) {
-        low = middle + 1; // Discard the left half
-        } else {
-        high = middle - 1; // Discard the right half
-        }
+//         if (array[middle] === target) {
+//         return middle; // Return the index if the target is found
+//         } else if (array[middle] < target) {
+//         low = middle + 1; // Discard the left half
+//         } else {
+//         high = middle - 1; // Discard the right half
+//         }
+//     }
+
+//     return -1; // Return -1 if the target is not found in the array 
+// };
+
+// let sortedArr = [1,2,3,4,5,6,7,8]
+// let targetValue = 8
+
+// let results = binarySearchIterative(sortedArr,targetValue)
+
+// if( results != -1){
+//     console.log(`${targetValue} found at the index ${results}`)
+// }else{
+//     console.log(`${targetValue} not found in the array`)
+// }
+
+// console.log(results)
+
+
+// 2 pointer array method  typically used for searching pairs in a sorted array. time complexity O(n)
+    const findPair = (nums, target) => {
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+    const currentSum = nums[left] + nums[right];
+
+    if (currentSum === target) {
+      return [nums[left], nums[right]]; // Pair found
+    } else if (currentSum < target) {
+      left++; // Move the left pointer to a larger element
+    } else {
+      right--; // Move the right pointer to a smaller element
+    }
     }
 
-    return -1; // Return -1 if the target is not found in the array 
+  return null; // No pair found
 };
 
-let sortedArr = [1,2,3,4,5,6,7,8]
-let targetValue = 8
+let sortedArr = [1,2,3,4,5,6,7,8,9]
+let targetValue = 5
 
-let results = binarySearchIterative(sortedArr,targetValue)
+let results = findPair( sortedArr, targetValue)
 
-if( results != -1){
-    console.log(`${targetValue} found at the index ${results}`)
-}else{
-    console.log(`${targetValue} not found in the array`)
+if(results ){
+    console.log(`Pair found: ${results} and ${targetValue}`)
+} else{
+    console.log(`Not found`)
 }
-
-console.log(results)

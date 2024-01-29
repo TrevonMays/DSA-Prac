@@ -60,6 +60,18 @@ class SingleLinkedList {
     // Skip the node to delete it
     prev.next = current.next;
 }
+    //search for a node or the value of the node 
+    search(value){
+        let curr = this.head;
+
+        while(curr){
+            if(curr.data === value){
+                return curr;
+            }
+            curr = curr.next;
+        }
+        return null;
+    }
 
 display() {
     let current = this.head;
@@ -78,11 +90,20 @@ singleLinkedList.insertFirst(2);
 singleLinkedList.insertFirst(3);
 singleLinkedList.insertFirst(4)
 singleLinkedList.deleteByValue(4)
+singleLinkedList.insertFirst(5)
 
-console.log("original link list")
+const foundNode = singleLinkedList.search(5)
 
+if(foundNode){
+    console.log("node found:", foundNode.data)
+}else{
+    console.log("node not found")
+}
 
 console.log(singleLinkedList.size()); // Output: 
+
+
+
 
 
 //Double link list 
